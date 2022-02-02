@@ -1,0 +1,9 @@
+---
+title: "notas"
+author: "eveiramirez"
+date: "1/2/2022"
+output: html_document
+---
+
+# <span style="color:darkblue"> Soy Wrande </span>
+
