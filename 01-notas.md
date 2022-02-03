@@ -206,3 +206,159 @@ http://bioconductor.org/packages/release/bioc/html/surfaltr.html
 
 
 
+## Clase 02/02/2022
+
+SummarizedExperiment
+Este paquete en el cual almacenaremos nuestros datos y organizarlos.
+
+Workflow de rnaseqGene, explica como usar ese paquete de manera mas detallada que la vignette.
+
+La información de summarizedexperimente se almacena en tres tipos de tablas.
+ColData, RowRanges, and assay(s).
+RowRanges, la informacion de los genes. Puede que tenga ese nombre por genomic ranges, que es un paquete útil para almacenar información de las coordenadas del genoma.
+El objeto que se tiene en rowranges es un GRanges.
+
+En cada renglón se tiene información de una muestra, y en cada columna se tendrá una variable de la muestra.
+
+
+Expdata, ayuda a accesar a información de los experimentos (existe mayor libertad para guardar datos ahí).
+
+Si coldata tiene un subconjunto, este se pasa a las demás tablas.
+
+GenomicRanges
+
+Es un programa mas antiguo.
+Contiene 5 vignettes.
+
+Objeto de granges
+Contiene varios elementos/atributos de informacion.
+Run Length Encoding, objeto que ayuda a almacenar información eficientemente, indicando con un vector los elementos que se repiten.
+
+Ranges contiene a IRanges, viene de Interval Ranges. Almacena los rangos de los genes, y tambien sus nombres.
+
+Strand, contiene información de la cadena.
+GRanges puede almacenar varios elementos, como score, GC.
+Al usarse la funcion rowRagnes, devuelve un objeto GRanges.
+
+Si se  usa la funcion de RowData, lo que va a accesar son las variables opcionales.
+
+
+Un paquete que esta muy relacionado es rtracklayer, el cual ayuda a leer datos de diferentes formatos.
+
+ 
+
+Assays puede tener mas de una tabla, por lo que se debe de indicar en una lista las tablas que cuenta.
+
+
+ColData tiene un DataFrame, la cual permite tener columnas con otros tipos de datos. Si es muy larga, imprime el inicio y final. Si fuese un data.frame, imprimiría todo.
+
+
+Paqueteria iSEE
+
+Provee una interfaz dinámica para explorar datos de SummarizedExperiment.
+
+ 
+
+
+Las figuras se pueden descargar.
+
+spatialLIBD, Expande el paquete de summarizedexperiment, y lo que hace es
+
+Esta imagen es similar a la de summarized.
+reducedDims, se almacena información de otros componentes
+
+Datos de una region del cerebro, que son 84, pero no se tenia información de todas, y por eso aparecen 76 en sce_layer
+Paquete de lobstr contiene la funcion obj_size, que permite obtener el tamaño de un objeto.
+
+ 
+
+RNA.seq, permite usar datos de secuenciación masiva de DNA
+
+SPEAQeasy, permite procesar los datos crudos de fastq, y crear objectos ranged summarized experiment.
+
+Este proceso es computacionalmente demandante, por lo que es necesario de un cluster.
+Speaqeasy permite hacer todo este flujo de trabajo.
+
+Otra opción es usar datos de proyectos de recount.
+Ha tenido tres fases.
+La primera fase es ReCount, donde no existe R.
+La segunda es recount, donde ya existe R.
+La idea de este proyecto fue que dado que no todos tienen el poder computacional para el acceso de rna-seq.
+Contiene datos procesados de manera uniforme.
+
+recount, paso de 20 estudios a 2040 estudios aprox.
+
+Usaron computadoras con AWS.
+
+Se diseño de tal manera que no creciera de manera lineal.
+
+
+Cobertura de las bases.
+
+Gente que quiera procesar muestras puede obtener los datos ya procesados.
+
+Humano y ratón son estas muestras.
+
+Los datos se ofrecen en distintas anotaciones.
+
+
+Available_projects, funcion que descarga los datos de humano.
+
+
+Se tiene el ID, organismo, fuente de datos, el numero de muestras, el tipo de proyecto y el Project_home
+
+Este proyecto tiene 12 muestras, era TFBS y chipseq.
+
+Mediante la funcion subset, se puede obtener el proyecto.
+Créate_rse, créate el objeto rse a partir de obtener un proyecto con subset.
+
+Interactivedisplaybase, con la funcion display permite buscar información de los proyectos que reciba.
+
+
+Raw_counts, la suma de la cobertura de cada una de las bases únicas de los exones de cada gen.
+
+Compute_read_counts, transforma raw_counts en counts.
+
+Desde NCBI se pueden acceder a los proyectos con los IDs.
+
+Expand_sra_attributes, permite expandir la información/atributos.
+Todas estas columnas extras contienen el prefijo sra_attribute.
+
+Puede haber datos que difieran pos signos de puntación, por lo que puede requerirse una limpieza.
+Gtex y tcga
+
+
+Con ISEE, al hacer click en publish, permite publicar y compartir los datos.
+
+ 
+
+
+Cuando se aprende algún concepto complejo, se pide que se explique.
+
+Regresión lineal, suma de variables con un error con distribución normal.
+
+
+Modelos estadísticos.
+Se harán regresiones lineales, y para esto se usara la funcion model.matrix()
+
+Funcion with, permite ahorrar líneas de texto.
+
+Lm, calcula la regresión lineal.
+Trees.
+Lm internamente usa model.matrix
+
+Al hacer un modelo de expresión diferencial, en vez de hacer miles de tablas de regresiones lineales, se extraerá la información para solo un coeficiente de interés.
+
+Se extraerá el estimado, el valor t y pr. 
+
+Exploremodelmatrix
+
+Exploremodelmatrix, permite generar una interfaz grafica de shiny igual que la de ISEE.
+
+Esta interfaz ayuda a entender los modelos de regresión lineal.
+
+ 
+
+Ejemplo
+Se tiene una respuesta, paciente, tratamiento, y ind.n
+
